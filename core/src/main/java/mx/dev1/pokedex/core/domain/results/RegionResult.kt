@@ -1,7 +1,7 @@
-package mx.dev1.pokedex.core.data.entities.results
+package mx.dev1.pokedex.core.domain.results
 
 import com.google.gson.annotations.SerializedName
-import mx.dev1.pokedex.core.data.entities.Region
+import mx.dev1.pokedex.core.domain.Region
 
 data class RegionResult (
     @SerializedName("count")

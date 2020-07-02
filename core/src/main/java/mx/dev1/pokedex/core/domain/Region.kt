@@ -1,4 +1,4 @@
-package mx.dev1.pokedex.core.data.entities
+package mx.dev1.pokedex.core.domain
 
 import com.google.gson.annotations.SerializedName
 

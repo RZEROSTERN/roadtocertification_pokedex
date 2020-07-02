@@ -1,8 +1,8 @@
 package mx.dev1.pokedex.core.interactors
 
 import io.reactivex.Observable
-import mx.dev1.pokedex.core.data.entities.results.RegionDetailedResult
-import mx.dev1.pokedex.core.data.entities.results.RegionResult
+import mx.dev1.pokedex.core.domain.results.RegionDetailedResult
+import mx.dev1.pokedex.core.domain.results.RegionResult
 import mx.dev1.pokedex.core.data.repositories.RegionRepositoryImp
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
