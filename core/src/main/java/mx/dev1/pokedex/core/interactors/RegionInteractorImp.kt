@@ -1,6 +1,7 @@
 package mx.dev1.pokedex.core.interactors
 
 import io.reactivex.Observable
+import mx.dev1.pokedex.core.data.entities.results.RegionDetailedResult
 import mx.dev1.pokedex.core.data.entities.results.RegionResult
 import mx.dev1.pokedex.core.data.repositories.RegionRepositoryImp
 import org.slf4j.Logger
@@ -11,6 +12,16 @@ class RegionInteractorImp(private val regionRepositoryImp: RegionRepositoryImp):
 
     override fun getRegions(): Observable<RegionResult> {
         return regionRepositoryImp.getRegions()
+            .doOnNext { response -> logger.debug(response.toString()) }
+            .doOnComplete { logger.debug("Service complete") }
+            .onErrorReturn { error ->
+                logger.error(error.message)
+                null
+            }
+    }
+
+    override fun getDetailedRegion(region: String): Observable<RegionDetailedResult> {
+        return regionRepositoryImp.getRegionByName(region)
             .doOnNext { response -> logger.debug(response.toString()) }
             .doOnComplete { logger.debug("Service complete") }
             .onErrorReturn { error ->

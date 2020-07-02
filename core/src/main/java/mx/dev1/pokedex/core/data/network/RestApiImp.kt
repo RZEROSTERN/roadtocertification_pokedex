@@ -21,7 +21,7 @@ class RestApiImp {
             if(retrofit == null) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(Constant.MAIN_URL)
-                    .client(okHttpClient)
+                    .client(okHttpClient!!)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
