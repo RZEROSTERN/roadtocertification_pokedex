@@ -4,4 +4,6 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="disclaimer">This application is intended for learning purposes. All assets and
+    content are property of The Pokémon Company and no kind of profit is intended.</string>
 </resources>
