@@ -1,27 +1,30 @@
 package mx.dev1.pokedex.presentation.dashboard
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.navigation.NavigationView
 import mx.dev1.pokedex.R
 import mx.dev1.pokedex.presentation.ApiDependencies
 import org.koin.android.ext.android.inject
 
 class DashboardFragment : Fragment() {
 
+    private val TAG = DashboardFragment::class.java.simpleName
     private lateinit var viewModel: DashboardViewModel
     private lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
+    private lateinit var navigationView: NavigationView
     private val dependencies: ApiDependencies by inject()
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
@@ -56,13 +59,19 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         viewModel.dependencies = this.dependencies
 
         initDrawerLayout(savedInstanceState)
 
+        var item = navigationView.menu.getItem(0)
+
+        viewModel.regions.observe(viewLifecycleOwner, Observer {
+            it.forEach { itr -> item.subMenu.add(R.id.regions_group,
+                Menu.NONE, Menu.NONE, itr.name.capitalize()) }
+        })
+
         viewModel.getRegions()
-        viewModel.getDetailedRegion("alola")
     }
 
     private fun initDrawerLayout(savedInstanceState: Bundle?) {
@@ -71,7 +80,14 @@ class DashboardFragment : Fragment() {
 
         drawerToggle.isDrawerIndicatorEnabled = true
         drawerToggle.syncState()
+
         drawerLayout.addDrawerListener(drawerToggle)
+
+        navigationView = requireView().findViewById(R.id.nvView)
+        navigationView.setNavigationItemSelectedListener { item ->
+            selectDrawerItem(item)
+            true
+        }
     }
 
     private fun setupDrawerToggle(): ActionBarDrawerToggle {
@@ -84,4 +100,11 @@ class DashboardFragment : Fragment() {
         )
     }
 
+    private fun selectDrawerItem(item: MenuItem) {
+        when(item.itemId) {
+            else -> {
+                Log.d(TAG, item.title.toString().toLowerCase())
+            }
+        }
+    }
 }

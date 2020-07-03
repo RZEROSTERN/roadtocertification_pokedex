@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Pokedex</string>
 
+    <string name="regions_menu_title">Regions</string>
+    <string name="login_menu_title">Login</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

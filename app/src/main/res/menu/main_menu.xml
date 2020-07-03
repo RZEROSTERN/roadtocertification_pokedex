@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/regions_group_menu"
+        android:title="@string/regions_menu_title">
+        <menu>
+            <group
+                android:id="@+id/regions_group"
+                android:checkableBehavior="single"/>
+        </menu>
+    </item>
+    <item android:id="@+id/login"
+        android:title="@string/login_menu_title"/>
 
 </menu>

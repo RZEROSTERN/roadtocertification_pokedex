@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dl_dashboard">
+    android:id="@+id/dl_dashboard"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_height="match_parent"
