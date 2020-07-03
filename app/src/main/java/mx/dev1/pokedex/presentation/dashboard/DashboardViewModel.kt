@@ -24,14 +24,4 @@ class DashboardViewModel : ViewModel() {
             )
         )
     }
-
-    fun getDetailedRegion(region: String) {
-        compositeDisposable.add(dependencies.getDetailedRegion(region)
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {res -> Log.d(TAG, res.pokedexes.size.toString())},
-                {t: Throwable? -> Log.e(TAG, t!!.message) }
-            )
-        )
-    }
 }

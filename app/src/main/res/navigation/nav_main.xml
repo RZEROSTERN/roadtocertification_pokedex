@@ -18,5 +18,18 @@
         android:id="@+id/dashboardFragment"
         android:name="mx.dev1.pokedex.presentation.dashboard.DashboardFragment"
         android:label="dashboard_fragment"
-        tools:layout="@layout/dashboard_fragment" />
+        tools:layout="@layout/dashboard_fragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_regionFragment"
+            app:destination="@id/regionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/regionFragment"
+        android:name="mx.dev1.pokedex.presentation.region.RegionFragment"
+        android:label="region_fragment"
+        tools:layout="@layout/region_fragment" >
+        <action
+            android:id="@+id/action_regionFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>

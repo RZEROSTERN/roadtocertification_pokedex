@@ -8,10 +8,12 @@ import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationView
 import mx.dev1.pokedex.R
 import mx.dev1.pokedex.presentation.ApiDependencies
@@ -67,6 +69,7 @@ class DashboardFragment : Fragment() {
         var item = navigationView.menu.getItem(1)
 
         viewModel.regions.observe(viewLifecycleOwner, Observer {
+            item.subMenu.clear()
             it.forEach { itr -> item.subMenu.add(R.id.regions_group,
                 Menu.NONE, Menu.NONE, itr.name.capitalize()) }
         })
@@ -102,8 +105,13 @@ class DashboardFragment : Fragment() {
 
     private fun selectDrawerItem(item: MenuItem) {
         when(item.itemId) {
+            R.id.about -> {}
+            R.id.login -> {}
+            R.id.full_pokedex -> {}
             else -> {
-                Log.d(TAG, item.title.toString().toLowerCase())
+                val bundle = bundleOf("region" to item.title.toString().toLowerCase())
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_dashboardFragment_to_regionFragment, bundle)
             }
         }
     }

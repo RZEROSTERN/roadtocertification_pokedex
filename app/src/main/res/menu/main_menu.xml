@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/full_pokedex"
         android:title="@string/fullpokedex_menu_title"/>
     <item
@@ -13,5 +14,7 @@
     </item>
     <item android:id="@+id/login"
         android:title="@string/login_menu_title"/>
+    <item android:id="@+id/about"
+        android:title="@string/about_menu_title"/>
 
 </menu>
