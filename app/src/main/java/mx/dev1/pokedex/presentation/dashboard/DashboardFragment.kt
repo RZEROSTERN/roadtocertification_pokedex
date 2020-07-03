@@ -64,7 +64,7 @@ class DashboardFragment : Fragment() {
 
         initDrawerLayout(savedInstanceState)
 
-        var item = navigationView.menu.getItem(0)
+        var item = navigationView.menu.getItem(1)
 
         viewModel.regions.observe(viewLifecycleOwner, Observer {
             it.forEach { itr -> item.subMenu.add(R.id.regions_group,

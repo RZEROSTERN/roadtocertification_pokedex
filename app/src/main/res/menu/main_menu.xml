@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/full_pokedex"
+        android:title="@string/fullpokedex_menu_title"/>
     <item
         android:id="@+id/regions_group_menu"
         android:title="@string/regions_menu_title">
