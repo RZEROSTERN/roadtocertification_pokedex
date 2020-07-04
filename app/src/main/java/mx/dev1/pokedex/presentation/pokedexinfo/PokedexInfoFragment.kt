@@ -60,7 +60,9 @@ class PokedexInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PokedexInfoViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        viewModel.dependencies = dependencies
+        viewModel.getPokedex(arguments?.getString("pokedex")!!)
     }
 
 }
