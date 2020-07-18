@@ -20,7 +20,7 @@ class DashboardViewModel : ViewModel() {
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {res -> regions.postValue(res.results)},
-                {t: Throwable? -> Log.e(TAG, t!!.message) }
+                {t: Throwable -> Log.e(TAG, t.message!!) }
             )
         )
     }

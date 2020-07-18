@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import mx.dev1.pokedex.R
 import mx.dev1.pokedex.presentation.ApiDependencies
 import org.koin.android.ext.android.inject
+import java.util.*
 
 class DashboardFragment : Fragment() {
 
@@ -64,7 +65,7 @@ class DashboardFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         viewModel.dependencies = this.dependencies
 
-        initDrawerLayout(savedInstanceState)
+        initDrawerLayout()
 
         var item = navigationView.menu.getItem(1)
 
@@ -77,7 +78,7 @@ class DashboardFragment : Fragment() {
         viewModel.getRegions()
     }
 
-    private fun initDrawerLayout(savedInstanceState: Bundle?) {
+    private fun initDrawerLayout() {
         drawerLayout = requireView().findViewById(R.id.dl_dashboard)
         drawerToggle = setupDrawerToggle()
 
@@ -109,7 +110,7 @@ class DashboardFragment : Fragment() {
             R.id.login -> {}
             R.id.full_pokedex -> {}
             else -> {
-                val bundle = bundleOf("region" to item.title.toString().toLowerCase())
+                val bundle = bundleOf("region" to item.title.toString().toLowerCase(Locale.getDefault()))
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_dashboardFragment_to_regionFragment, bundle)
             }

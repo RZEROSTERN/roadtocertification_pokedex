@@ -19,7 +19,7 @@ class RegionViewModel : ViewModel() {
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {res -> regionPokedexes.postValue(res.pokedexes) },
-                {t: Throwable? -> Log.e(ContentValues.TAG, t!!.message) }
+                {t: Throwable -> Log.e(ContentValues.TAG, t.message!!) }
             )
         )
     }

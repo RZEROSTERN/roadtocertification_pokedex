@@ -1,7 +1,6 @@
 package mx.dev1.pokedex.presentation.region
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -21,6 +20,7 @@ import mx.dev1.pokedex.core.domain.Pokedex
 import mx.dev1.pokedex.presentation.ApiDependencies
 import mx.dev1.pokedex.presentation.region.adapters.PokedexesAdapter
 import org.koin.android.ext.android.inject
+import java.util.*
 
 class RegionFragment : Fragment() {
     private val TAG = RegionFragment::class.java.simpleName
@@ -35,6 +35,7 @@ class RegionFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
+    @ExperimentalStdlibApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +46,7 @@ class RegionFragment : Fragment() {
         toolbar = view.findViewById(R.id.tb_region)
         activity.setSupportActionBar(toolbar)
 
-        activity.supportActionBar!!.title = arguments?.getString("region")!!.capitalize()
+        activity.supportActionBar!!.title = arguments?.getString("region")!!.capitalize(Locale.getDefault())
         activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         return view
@@ -87,8 +88,8 @@ class RegionFragment : Fragment() {
     private fun initRecyclerView() {
         val listener = View.OnClickListener() {
             val bundle = bundleOf("pokedex" to it
-                .findViewById<TextView>(R.id.txt_pokedex_title)
-                .text.toString().replace(" ", "-").toLowerCase(),
+                .findViewById<TextView>(R.id.txt_pokemon_name)
+                .text.toString().replace(" ", "-").toLowerCase(Locale.getDefault()),
             "region" to arguments?.getString("region"))
 
             Navigation.findNavController(requireView())
