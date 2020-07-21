@@ -88,7 +88,7 @@ class RegionFragment : Fragment() {
     private fun initRecyclerView() {
         val listener = View.OnClickListener() {
             val bundle = bundleOf("pokedex" to it
-                .findViewById<TextView>(R.id.txt_pokemon_name)
+                .findViewById<TextView>(R.id.txt_pokedex_name)
                 .text.toString().replace(" ", "-").toLowerCase(Locale.getDefault()),
             "region" to arguments?.getString("region"))
 

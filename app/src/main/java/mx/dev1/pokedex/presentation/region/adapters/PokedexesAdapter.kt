@@ -23,7 +23,7 @@ class PokedexesAdapter(private val items: MutableList<Pokedex>, val listener: Vi
     }
 
     class ViewHolder(itemView: View, listener: View.OnClickListener) : RecyclerView.ViewHolder(itemView) {
-        private val nameText = itemView.findViewById<TextView>(R.id.txt_pokemon_name)
+        private val nameText = itemView.findViewById<TextView>(R.id.txt_pokedex_name)
 
         init {
             itemView.setOnClickListener(listener)

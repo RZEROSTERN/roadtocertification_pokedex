@@ -12,11 +12,12 @@ import mx.dev1.pokedex.R
 import mx.dev1.pokedex.core.domain.Pokemon
 import java.util.*
 
-class PokedexInfoAdapter(private val items: MutableList<Pokemon>): RecyclerView.Adapter<PokedexInfoAdapter.ViewHolder>() {
+class PokedexInfoAdapter(private val items: MutableList<Pokemon>,
+                         private val listener: View.OnClickListener): RecyclerView.Adapter<PokedexInfoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(layoutInflater.inflate(R.layout.pokemon_item, parent, false))
+        return ViewHolder(layoutInflater.inflate(R.layout.pokemon_item, parent, false), listener)
     }
 
     override fun getItemCount(): Int {
@@ -28,9 +29,13 @@ class PokedexInfoAdapter(private val items: MutableList<Pokemon>): RecyclerView.
         holder.bind(items[position])
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, listener: View.OnClickListener): RecyclerView.ViewHolder(itemView) {
         private val pokemonName: TextView = itemView.findViewById(R.id.txt_pokemon_name)
         private val pokemonSprite: ImageView = itemView.findViewById(R.id.iv_pokemon_sprite)
+
+        init {
+            itemView.setOnClickListener(listener)
+        }
 
         @ExperimentalStdlibApi
         fun bind(item: Pokemon) {

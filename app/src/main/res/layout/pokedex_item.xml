@@ -24,7 +24,7 @@
             android:background="@color/colorAccent">
 
             <TextView
-                android:id="@+id/txt_pokemon_name"
+                android:id="@+id/txt_pokedex_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

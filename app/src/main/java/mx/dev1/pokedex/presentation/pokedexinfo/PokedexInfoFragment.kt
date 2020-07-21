@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
@@ -57,7 +58,7 @@ class PokedexInfoFragment : Fragment() {
         when (item.itemId) {
             android.R.id.home -> {
                 var bundle = bundleOf("region" to arguments?.getString("region"))
-                Navigation.findNavController(requireView()).navigate(R.id.action_pokedexInfoFragment_to_regionFragment, bundle)
+                Navigation.findNavController(requireView()).navigate(R.id.action_pokedexInfoFragment_to_pokemonFragment, bundle)
                 return true
             }
         }
@@ -78,19 +79,31 @@ class PokedexInfoFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
+        val listener = View.OnClickListener() {
+            val bundle = bundleOf("pokemon" to it
+                .findViewById<TextView>(R.id.txt_pokemon_name)
+                .text.toString().toLowerCase(Locale.getDefault()),
+                "pokedex" to arguments?.getString("pokedex"))
+
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_pokedexInfoFragment_to_pokemonFragment, bundle)
+        }
+
         recyclerView = requireView().findViewById(R.id.rv_pokedex_info)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        recyclerView.adapter = PokedexInfoAdapter(items)
+        recyclerView.adapter = PokedexInfoAdapter(items, listener)
     }
 
     override fun onDetach() {
         viewModel.compositeDisposable.dispose()
+        items.clear()
         super.onDetach()
     }
 
     override fun onDestroy() {
         viewModel.compositeDisposable.dispose()
+        items.clear()
         super.onDestroy()
     }
 }

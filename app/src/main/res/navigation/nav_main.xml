@@ -43,5 +43,17 @@
         <action
             android:id="@+id/action_pokedexInfoFragment_to_regionFragment"
             app:destination="@id/regionFragment" />
+        <action
+            android:id="@+id/action_pokedexInfoFragment_to_pokemonFragment"
+            app:destination="@id/pokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonFragment"
+        android:name="mx.dev1.pokedex.presentation.pokemon.PokemonFragment"
+        android:label="pokemon_fragment"
+        tools:layout="@layout/pokemon_fragment" >
+        <action
+            android:id="@+id/action_pokemonFragment_to_pokedexInfoFragment"
+            app:destination="@id/pokedexInfoFragment" />
     </fragment>
 </navigation>
