@@ -19,10 +19,6 @@ import java.util.concurrent.TimeUnit
 
 class SplashFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SplashFragment()
-    }
-
     private lateinit var navController: NavController
     private lateinit var viewModel: SplashViewModel
 
@@ -60,6 +56,14 @@ class SplashFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 }

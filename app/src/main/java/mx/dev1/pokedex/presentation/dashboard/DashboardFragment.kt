@@ -116,4 +116,14 @@ class DashboardFragment : Fragment() {
             }
         }
     }
+
+    override fun onDetach() {
+        viewModel.compositeDisposable.dispose()
+        super.onDetach()
+    }
+
+    override fun onDestroy() {
+        viewModel.compositeDisposable.dispose()
+        super.onDestroy()
+    }
 }

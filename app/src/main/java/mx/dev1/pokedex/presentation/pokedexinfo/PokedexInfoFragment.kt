@@ -84,4 +84,13 @@ class PokedexInfoFragment : Fragment() {
         recyclerView.adapter = PokedexInfoAdapter(items)
     }
 
+    override fun onDetach() {
+        viewModel.compositeDisposable.dispose()
+        super.onDetach()
+    }
+
+    override fun onDestroy() {
+        viewModel.compositeDisposable.dispose()
+        super.onDestroy()
+    }
 }

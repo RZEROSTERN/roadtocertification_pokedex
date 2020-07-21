@@ -55,6 +55,9 @@ dependencies {
     // RxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
     // Stetho
     debugImplementation "com.facebook.stetho:stetho:$stetho_version"
 

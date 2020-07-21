@@ -1,6 +1,7 @@
 package mx.dev1.pokedex
 
 import mx.dev1.pokedex.core.data.repositories.PokedexRepositoryImp
+import mx.dev1.pokedex.core.data.repositories.PokemonRepositoryImp
 import mx.dev1.pokedex.core.data.repositories.RegionRepositoryImp
 import mx.dev1.pokedex.core.interactors.PokedexInteractor
 import mx.dev1.pokedex.core.interactors.PokedexInteractorImp
@@ -11,7 +12,7 @@ import org.koin.dsl.module
 
 val appModule = module(override = true) {
     single<RegionInteractor> { RegionInteractorImp(RegionRepositoryImp())}
-    single<PokedexInteractor> { PokedexInteractorImp(PokedexRepositoryImp()) }
+    single<PokedexInteractor> { PokedexInteractorImp(PokedexRepositoryImp(), PokemonRepositoryImp()) }
 
     factory { ApiDependencies(get(), get()) }
 }
