@@ -17,5 +17,6 @@ data class PokemonResult (
     @SerializedName("types")
     val types: MutableList<PokemonTypeItem>,
     @SerializedName("weight")
-    val weight: Integer
+    val weight: Integer,
+    var image: String
 )

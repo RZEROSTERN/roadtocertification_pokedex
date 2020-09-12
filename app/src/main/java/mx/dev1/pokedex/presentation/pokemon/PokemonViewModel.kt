@@ -22,4 +22,4 @@ class PokemonViewModel : ViewModel() {
                 {t: Throwable -> Log.e(ContentValues.TAG, t.message!!) }
             ))
     }
-}
+}  

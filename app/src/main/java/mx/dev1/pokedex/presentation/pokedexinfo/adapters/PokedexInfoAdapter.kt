@@ -39,7 +39,7 @@ class PokedexInfoAdapter(private val items: MutableList<Pokemon>,
 
         @ExperimentalStdlibApi
         fun bind(item: Pokemon) {
-            Glide.with(itemView).load(item.pokemonDetails.sprites.front_default).into(pokemonSprite)
+            Glide.with(itemView).load(item.pokemonImage).into(pokemonSprite)
             pokemonName.text = item.pokemonSpecies.name.capitalize(Locale.getDefault())
         }
     }

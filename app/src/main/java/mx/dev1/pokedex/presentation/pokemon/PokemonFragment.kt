@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import mx.dev1.pokedex.R
 import mx.dev1.pokedex.core.domain.results.PokemonResult
 import mx.dev1.pokedex.presentation.ApiDependencies
@@ -52,7 +54,7 @@ class PokemonFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                var bundle = bundleOf("pokedex" to arguments?.getString("pokedex"))
+                val bundle = bundleOf("pokedex" to arguments?.getString("pokedex"))
                 Navigation.findNavController(requireView()).navigate(R.id.action_pokemonFragment_to_pokedexInfoFragment, bundle)
                 return true
             }
@@ -68,9 +70,15 @@ class PokemonFragment : Fragment() {
         viewModel.dependencies = dependencies
         viewModel.pokemonResult.observe(viewLifecycleOwner, Observer {
             pokemon = it
+            fetchInfoIntoUI()
         })
 
         viewModel.getPokemon(arguments?.getString("pokemon")!!)
+    }
+
+    private fun fetchInfoIntoUI() {
+        var pokemonImageView: ImageView = requireView().findViewById(R.id.iv_pokemon_image)
+        Glide.with(requireView()).load(pokemon.image).into(pokemonImageView)
     }
 
     override fun onDetach() {

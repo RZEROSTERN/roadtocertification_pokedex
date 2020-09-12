@@ -8,5 +8,6 @@ data class Pokemon (
     val entryNumber: Integer,
     @SerializedName("pokemon_species")
     val pokemonSpecies: PokemonSpecies,
-    var pokemonDetails: PokemonResult
+    var pokemonDetails: PokemonResult,
+    var pokemonImage: String
 )
