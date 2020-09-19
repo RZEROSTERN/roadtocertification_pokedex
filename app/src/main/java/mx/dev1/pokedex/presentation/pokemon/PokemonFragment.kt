@@ -9,11 +9,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.github.florent37.glidepalette.BitmapPalette
+import com.github.florent37.glidepalette.BitmapPalette.Swatch.RGB
+import com.github.florent37.glidepalette.GlidePalette
 import mx.dev1.pokedex.R
 import mx.dev1.pokedex.core.domain.results.PokemonResult
 import mx.dev1.pokedex.presentation.ApiDependencies
@@ -78,7 +82,15 @@ class PokemonFragment : Fragment() {
 
     private fun fetchInfoIntoUI() {
         var pokemonImageView: ImageView = requireView().findViewById(R.id.iv_pokemon_image)
-        Glide.with(requireView()).load(pokemon.image).into(pokemonImageView)
+        var pokemonImageContainer: ConstraintLayout = requireView().findViewById(R.id.iv_pokemon_image_container)
+
+        Glide.with(requireView()).load(pokemon.image)
+            .listener(
+                GlidePalette.with(pokemon.image)
+                .use(BitmapPalette.Profile.VIBRANT)
+                .intoBackground(pokemonImageContainer, RGB)
+                .crossfade(true)
+            ).into(pokemonImageView)
     }
 
     override fun onDetach() {

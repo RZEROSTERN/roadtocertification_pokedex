@@ -56,6 +56,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.github.florent37:glidepalette:$glidepalette_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     // Stetho
