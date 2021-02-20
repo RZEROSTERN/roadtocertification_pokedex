@@ -6,6 +6,15 @@
     <string name="fullpokedex_menu_title">Full Pokedex</string>
     <string name="about_menu_title">About Pokedex</string>
     <string name="guest_user">Guest</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="base_stats">Base Stats</string>
+    <string name="pokemon_description">Description</string>
+    <string name="hp">HP</string>
+    <string name="atk">ATK</string>
+    <string name="def">DEF</string>
+    <string name="spo">SPO</string>
+    <string name="exp">EXP</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
