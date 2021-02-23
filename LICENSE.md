@@ -7,7 +7,7 @@ Also I want to add the Beerware License.
 /*
  * ----------------------------------------------------------------------------
  * "THE BEER-WARE LICENSE" (Revision 42):
- * thewover@protonmail.ch; wrote this file. As long as you retain this notice you
+ * RZEROSTERN (marco.ramirez@dev1.mx) wrote this app. As long as you retain this notice you
  * can do whatever you want with this stuff. If we meet some day, and you think
  * this stuff is worth it, you can buy me a beer in return. The Wover
  * ----------------------------------------------------------------------------
