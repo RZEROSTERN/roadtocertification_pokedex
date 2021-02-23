@@ -1,11 +1,13 @@
 package mx.dev1.pokedex.presentation.dashboard
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.Nullable
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
@@ -67,7 +69,7 @@ class DashboardFragment : Fragment() {
 
         initDrawerLayout()
 
-        var item = navigationView.menu.getItem(1)
+        var item = navigationView.menu.getItem(0)
 
         viewModel.regions.observe(viewLifecycleOwner, Observer {
             item.subMenu.clear()
@@ -106,9 +108,13 @@ class DashboardFragment : Fragment() {
 
     private fun selectDrawerItem(item: MenuItem) {
         when(item.itemId) {
-            R.id.about -> {}
-            R.id.login -> {}
-            R.id.full_pokedex -> {}
+            R.id.about -> {
+                var builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(R.string.pokedex_about_title)
+                    .setMessage(R.string.pokedex_about)
+                    .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id -> })
+                builder.create().show()
+            }
             else -> {
                 val bundle = bundleOf("region" to item.title.toString().toLowerCase(Locale.getDefault()))
                 Navigation.findNavController(requireView())

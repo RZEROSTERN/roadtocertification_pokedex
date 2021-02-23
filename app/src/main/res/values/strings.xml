@@ -5,7 +5,7 @@
     <string name="login_menu_title">Login</string>
     <string name="fullpokedex_menu_title">Full Pokedex</string>
     <string name="about_menu_title">About Pokedex</string>
-    <string name="guest_user">Guest</string>
+    <string name="welcome_caption">Welcome to Pokedex</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
     <string name="base_stats">Base Stats</string>
@@ -13,12 +13,16 @@
     <string name="hp">HP</string>
     <string name="atk">ATK</string>
     <string name="def">DEF</string>
-    <string name="spo">SPO</string>
+    <string name="spo">SPD</string>
     <string name="exp">EXP</string>
+    <string name="loading">Loading...</string>
+    <string name="pokemon_content_description">Pokemon</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="pokedex_about">Pokedex made by RZEROSTERN</string>
+    <string name="pokedex_about">Version 1.0 \nPokedex made by RZEROSTERN</string>
+    <string name="pokedex_about_title">About Pokedex</string>
+    <string name="pokedex_coming_soon">I\'ll add more stuff soon in the dashboard. Meanwhile, enjoy this Pokedex.</string>
     <string name="disclaimer">This application is intended for learning purposes. All assets and
     content are property of The Pokémon Company and no kind of profit is intended.</string>
 </resources>

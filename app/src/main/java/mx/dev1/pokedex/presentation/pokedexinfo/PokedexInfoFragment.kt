@@ -58,7 +58,7 @@ class PokedexInfoFragment : Fragment() {
         when (item.itemId) {
             android.R.id.home -> {
                 var bundle = bundleOf("region" to arguments?.getString("region"))
-                Navigation.findNavController(requireView()).navigate(R.id.action_pokedexInfoFragment_to_pokemonFragment, bundle)
+                Navigation.findNavController(requireView()).navigate(R.id.action_pokedexInfoFragment_to_regionFragment, bundle)
                 return true
             }
         }

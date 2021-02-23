@@ -1,12 +1,15 @@
 package mx.dev1.pokedex.presentation.pokemon
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +22,9 @@ import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.BitmapPalette.Swatch.RGB
 import com.github.florent37.glidepalette.GlidePalette
 import mx.dev1.pokedex.R
+import mx.dev1.pokedex.core.domain.PokemonStat
 import mx.dev1.pokedex.core.domain.results.PokemonResult
+import mx.dev1.pokedex.core.domain.results.PokemonSpeciesResult
 import mx.dev1.pokedex.presentation.ApiDependencies
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -30,6 +35,7 @@ class PokemonFragment : Fragment() {
     private lateinit var toolbar: Toolbar
     private val dependencies: ApiDependencies by inject()
     private lateinit var pokemon: PokemonResult
+    private lateinit var pokemonSpeciesResult: PokemonSpeciesResult
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +80,10 @@ class PokemonFragment : Fragment() {
         viewModel.dependencies = dependencies
         viewModel.pokemonResult.observe(viewLifecycleOwner, Observer {
             pokemon = it
+        })
+
+        viewModel.pokemonSpeciesResult.observe(viewLifecycleOwner, Observer {
+            pokemonSpeciesResult = it
             fetchInfoIntoUI()
         })
 
@@ -83,14 +93,49 @@ class PokemonFragment : Fragment() {
     private fun fetchInfoIntoUI() {
         var pokemonImageView: ImageView = requireView().findViewById(R.id.iv_pokemon_image)
         var pokemonImageContainer: ConstraintLayout = requireView().findViewById(R.id.iv_pokemon_image_container)
+        var pokemonWeightTxt: TextView = requireView().findViewById(R.id.txt_pokemon_weight)
+        var pokemonHeightTxt: TextView = requireView().findViewById(R.id.txt_pokemon_height)
+        var pokemonDescription: TextView = requireView().findViewById(R.id.txt_pokemon_description)
+        var pokemonHPTxt: TextView = requireView().findViewById(R.id.txt_pokemon_hp)
+        var pokemonATKTxt: TextView = requireView().findViewById(R.id.txt_pokemon_atk)
+        var pokemonDEFTxt: TextView = requireView().findViewById(R.id.txt_pokemon_def)
+        var pokemonSPDTxt: TextView = requireView().findViewById(R.id.txt_pokemon_spd)
+        var pokemonEXPTxt: TextView = requireView().findViewById(R.id.txt_pokemon_exp)
+
+        var pokemonHPProgressBar: ProgressBar = requireView().findViewById(R.id.pb_pokemon_hp)
+        var pokemonATKProgressBar: ProgressBar = requireView().findViewById(R.id.pb_pokemon_atk)
+        var pokemonDEFProgressBar: ProgressBar = requireView().findViewById(R.id.pb_pokemon_def)
+        var pokemonSPDProgressBar: ProgressBar = requireView().findViewById(R.id.pb_pokemon_spd)
+        var pokemonEXPProgressBar: ProgressBar = requireView().findViewById(R.id.pb_pokemon_exp)
 
         Glide.with(requireView()).load(pokemon.image)
             .listener(
                 GlidePalette.with(pokemon.image)
-                .use(BitmapPalette.Profile.VIBRANT)
+                .use(BitmapPalette.Profile.VIBRANT_LIGHT)
                 .intoBackground(pokemonImageContainer, RGB)
                 .crossfade(true)
             ).into(pokemonImageView)
+
+        pokemonHeightTxt.text = String.format("%.1f m", pokemon.height.toDouble() / 10)
+        pokemonWeightTxt.text = String.format("%.1f kg", pokemon.weight.toDouble() / 10)
+        pokemonDescription.text = String.format("%s", pokemonSpeciesResult.flavorTextEntries[0].flavor_text)
+
+        for(pokemonStat: PokemonStat in pokemon.stats) {
+            when(pokemonStat.stat.name) {
+                "hp" -> pokemonHPProgressBar.progress = pokemonStat.baseStat
+                "attack" -> pokemonATKProgressBar.progress = pokemonStat.baseStat
+                "defense" -> pokemonDEFProgressBar.progress = pokemonStat.baseStat
+                "special-defense" -> pokemonSPDProgressBar.progress = pokemonStat.baseStat
+            }
+        }
+
+        pokemonEXPProgressBar.progress = pokemon.baseExperience.toInt()
+
+        pokemonHPTxt.text = String.format("%d / %d", pokemonHPProgressBar.progress, pokemonHPProgressBar.max)
+        pokemonATKTxt.text = String.format("%d / %d", pokemonATKProgressBar.progress, pokemonATKProgressBar.max)
+        pokemonDEFTxt.text = String.format("%d / %d", pokemonDEFProgressBar.progress, pokemonDEFProgressBar.max)
+        pokemonSPDTxt.text = String.format("%d / %d", pokemonSPDProgressBar.progress, pokemonSPDProgressBar.max)
+        pokemonEXPTxt.text = String.format("%d / %d", pokemonEXPProgressBar.progress, pokemonEXPProgressBar.max)
     }
 
     override fun onDetach() {

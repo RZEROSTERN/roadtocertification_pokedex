@@ -19,7 +19,12 @@ class PokedexInteractorImp(private val pokedexRepositoryImp: PokedexRepositoryIm
             .doOnNext { response ->
                 run {
                     for(item: Pokemon in response.pokemonEntries) {
-                        item.pokemonImage = Constant.POKEMON_IMAGE_URL + item.entryNumber.toString() + ".png"
+                        var pokemonID: String = item.pokemonSpecies.url
+                            .replace(Constant.MAIN_URL, "")
+                            .replace("pokemon-species", "")
+                            .replace("/", "")
+
+                        item.pokemonImage = Constant.POKEMON_IMAGE_URL + pokemonID + ".png"
                         pokemonRepositoryImp.getPokemon(item.pokemonSpecies.name)
                             .subscribeOn(Schedulers.io())
                             .subscribe({response2 -> item.pokemonDetails = response2}, {t -> logger.error(t.message)})

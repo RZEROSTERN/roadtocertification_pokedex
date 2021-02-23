@@ -11,4 +11,5 @@ class ApiDependencies(var regionInteractor: RegionInteractor,
     fun getDetailedRegion(region: String) = regionInteractor.getDetailedRegion(region)
     fun getPokedex(pokedex: String) = pokedexInteractor.getPokedex(pokedex)
     fun getPokemon(pokemon: String) = pokemonInteractor.getPokemon(pokemon)
+    fun getPokemonSpecies(pokemon: String) = pokemonInteractor.getPokemonSpecies(pokemon)
 }

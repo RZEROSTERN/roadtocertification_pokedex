@@ -39,6 +39,7 @@
                     android:id="@+id/iv_pokemon_image_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/pokemon_content_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -49,6 +50,7 @@
                         android:layout_height="163dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
+                        android:contentDescription="@string/pokemon_content_description"
                         android:src="@drawable/ic_pokedex_icon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -86,11 +88,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/txt_weight"
+                                android:id="@+id/txt_pokemon_weight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="TextView"
+                                android:text="@string/loading"
                                 android:textAlignment="center"
                                 android:textSize="30sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,12 +106,12 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:text="@string/weight"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/txt_weight" />
+                                app:layout_constraintTop_toBottomOf="@+id/txt_pokemon_weight" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,11 +120,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/txt_height"
+                                android:id="@+id/txt_pokemon_height"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="TextView"
+                                android:text="@string/loading"
                                 android:textAlignment="center"
                                 android:textSize="30sp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -135,11 +137,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/height"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/txt_height" />
+                                app:layout_constraintTop_toBottomOf="@+id/txt_pokemon_height" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </TableRow>
@@ -193,6 +195,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/hp"
                                     android:textAlignment="textEnd"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -209,11 +212,24 @@
                                     android:id="@+id/pb_pokemon_hp"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_marginBottom="8dp"
+                                    android:max="300"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_pokemon_hp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/loading"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -241,6 +257,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/atk"
                                     android:textAlignment="textEnd"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -257,11 +274,23 @@
                                     android:id="@+id/pb_pokemon_atk"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_marginBottom="8dp"
+                                    android:max="300"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_pokemon_atk"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/loading"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -290,6 +319,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/def"
                                     android:textAlignment="textEnd"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -307,11 +337,23 @@
                                     android:id="@+id/pb_pokemon_def"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_marginBottom="8dp"
+                                    android:max="300"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_pokemon_def"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/loading"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -340,6 +382,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/spo"
                                     android:textAlignment="textEnd"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -354,14 +397,26 @@
                                 android:layout_weight="4">
 
                                 <ProgressBar
-                                    android:id="@+id/pb_pokemon_spo"
+                                    android:id="@+id/pb_pokemon_spd"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_marginBottom="8dp"
+                                    android:max="300"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_pokemon_spd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/loading"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -390,6 +445,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/exp"
                                     android:textAlignment="textEnd"
+                                    android:textSize="18sp"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -407,11 +463,23 @@
                                     android:id="@+id/pb_pokemon_exp"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_marginBottom="8dp"
+                                    android:max="1000"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_pokemon_exp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/loading"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -450,7 +518,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="TextView"
+                        android:text="@string/loading"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
