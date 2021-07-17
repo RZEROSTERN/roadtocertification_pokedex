@@ -78,13 +78,14 @@ class PokemonFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
         viewModel.dependencies = dependencies
-        viewModel.pokemonResult.observe(viewLifecycleOwner, Observer {
-            pokemon = it
-        })
+        viewModel.pokemonResult.observe(viewLifecycleOwner, Observer { itPokemon ->
+            pokemon = itPokemon
 
-        viewModel.pokemonSpeciesResult.observe(viewLifecycleOwner, Observer {
-            pokemonSpeciesResult = it
-            fetchInfoIntoUI()
+            viewModel.pokemonSpeciesResult.observe(viewLifecycleOwner, Observer { itPokemonSpecies ->
+                pokemonSpeciesResult = itPokemonSpecies
+
+                fetchInfoIntoUI()
+            })
         })
 
         viewModel.getPokemon(arguments?.getString("pokemon")!!)
